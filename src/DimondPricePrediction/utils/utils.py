@@ -14,7 +14,7 @@ def save_object(file_path, obj): ###serialization
 
         os.makedirs(dir_path, exist_ok=True)
 
-        with open(file_path, "wb") as file_obj:
+        with open(file_path, "wb") as file_obj: ##wb writing binary
             pickle.dump(obj, file_obj)#Serializes the Python object obj and writes it to the file using the pickle.dump method. Serialization converts the object into a byte stream suitable for storage or transmission.
 
     except Exception as e:
@@ -47,7 +47,7 @@ def evaluate_model(X_train,y_train,X_test,y_test,models):
     
 def load_object(file_path): ## deserialization
     try:
-        with open(file_path,'rb') as file_obj:
+        with open(file_path,'rb') as file_obj: ## rb = read binary
             return pickle.load(file_obj)
     except Exception as e:
         logging.info('Exception Occured in load_object function utils')
