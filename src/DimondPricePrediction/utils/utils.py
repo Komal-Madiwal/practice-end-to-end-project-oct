@@ -8,21 +8,21 @@ from src.DimondPricePrediction.exception import customexception
 
 from sklearn.metrics import r2_score, mean_absolute_error,mean_squared_error
 
-def save_object(file_path, obj):
+def save_object(file_path, obj): ###serialization
     try:
         dir_path = os.path.dirname(file_path)
 
         os.makedirs(dir_path, exist_ok=True)
 
         with open(file_path, "wb") as file_obj:
-            pickle.dump(obj, file_obj)
+            pickle.dump(obj, file_obj)#Serializes the Python object obj and writes it to the file using the pickle.dump method. Serialization converts the object into a byte stream suitable for storage or transmission.
 
     except Exception as e:
         raise customexception(e, sys)
     
 def evaluate_model(X_train,y_train,X_test,y_test,models):
     try:
-        report = {}
+        report = {}##The report dictionary is used to store the evaluation results for each model.
         for i in range(len(models)):
             model = list(models.values())[i]
             # Train model
@@ -37,7 +37,7 @@ def evaluate_model(X_train,y_train,X_test,y_test,models):
             #train_model_score = r2_score(ytrain,y_train_pred)
             test_model_score = r2_score(y_test,y_test_pred)
 
-            report[list(models.keys())[i]] =  test_model_score
+            report[list(models.keys())[i]] =  test_model_score ## test_model_score is value and list(model.key )=key here
 
         return report
 
@@ -45,7 +45,7 @@ def evaluate_model(X_train,y_train,X_test,y_test,models):
         logging.info('Exception occured during model training')
         raise customexception(e,sys)
     
-def load_object(file_path):
+def load_object(file_path): ## deserialization
     try:
         with open(file_path,'rb') as file_obj:
             return pickle.load(file_obj)
