@@ -20,7 +20,7 @@ class PredictPipeline:
             
             scaled_data=preprocessor.transform(features)##here features = x test 
             
-            pred=model.predict(scaled_data) scaled_data = processed x test 
+            pred=model.predict(scaled_data) #scaled_data = processed x test 
             
             return pred
             
@@ -54,7 +54,7 @@ class CustomData:
         self.clarity = clarity
             
                 
-    def get_data_as_dataframe(self):
+    def get_data_as_dataframe(self): 
             try:
                 custom_data_input_dict = {
                     'carat':[self.carat],
